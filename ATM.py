@@ -1,9 +1,9 @@
 import pandas as pd
 
-balance = 10000
+balance_i = int(input("Dime la cantidad inicial: "))
+
 print("  ATM ")
 print("\n")
-print("Tu balance actual es +10.000€")
 print("""
 1)   Balance
 2)   Retirada
@@ -11,65 +11,47 @@ print("""
 4)   Salir
 """)
 
-df = pd.DataFrame()
-df['Transacción','Balance'] = None
-transac = []
-bal = []
+df = pd.DataFrame(columns=['Transaccion', 'Balance'])
+
+print(df)
+
+def bal(bf):
+    return bf
+
+def retirada(b, r):
+    bf = b - r
+    return bf
+
+def deposito(b, i):
+    bf = b + i
+    return bf
+
+def salir():
+    exit()
 
 conteo = 0
 
 while True:
+    opcion = int(input("Elige una de las 4 opciones: "))
 
-    option = int(input("Elige una opción: "))
-    
-    if option == 1:
-        print("balance €", balance)
+    if opcion == 1:
         conteo = conteo + 1
-        transac.append(conteo)
-        bal.append(balance)
-
-        df['Transacción'].append(transac, ignore_index = True)
-        df['Balance'].append(bal, ignore_index = True)
-
+        balance_i = bal(balance_i)
+        df = df.append({'Transaccion': conteo, 'Balance':bal(balance_i)}, ignore_index=True)
         print(df)
-
-    elif option == 2:
-        print("Balance €", balance)
-        withdraw = float(input("Enter withdraw amount €: "))
-        if withdraw > 0:
-            forewardbalance = (balance - withdraw)
-            print("Foreward balance €", forewardbalance)
-            transac.append(conteo)
-            bal.append(forewardbalance)
-
-            df['Transacción'].append(transac, ignore_index = True)
-            df['Balance'].append(bal, ignore_index = True)
-
-            print(df)
-
-        elif withdraw > balance:
-            print(" no funs in account")
-        else:
-            print("None withdraw made")
-    elif option == 3:
-        print("Balance €", balance)
-        deposit = float(input("Enter deposit amount €: "))
-        if deposit > 0:
-            forewardbalance = (balance + deposit)
-            print("Foreward balance €", forewardbalance)
-            transac.append(conteo)
-            bal.append(forewardbalance)
-
-            df['Transacción'].append(transac, ignore_index = True)
-            df['Balance'].append(bal, ignore_index = True)
-
-            print(df)
-
-        else:
-            print("None deposit made")
-    elif option == 4:
+    elif opcion == 2:
+        retiro = int(input("Ingrese la cantidad a retirar: "))
+        balance_i = retirada(balance_i,retiro)
+        conteo = conteo + 1
+        df = df.append({'Transaccion': conteo, 'Balance':balance_i}, ignore_index=True)
+        print(df)
+    elif opcion == 3:
+        ingreso = int(input("Ingrese la cantidad a depositar: "))
+        balance_i = deposito(balance_i, ingreso)
+        conteo = conteo + 1
+        df = df.append({'Transaccion': conteo, 'Balance':balance_i}, ignore_index=True)
+        print(df)
+    elif opcion == 4:
         exit()
-
-    
-
-    
+    else:
+        break
