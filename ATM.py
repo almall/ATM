@@ -4,6 +4,21 @@ balance_i = float(input("Dime la cantidad inicial: "))
 
 print(" ATM ")
 print("\n")
+print("""
+1)   Balance
+2)   Retirada
+3)   Depósito
+4)   Ingreso mediante BIZUM +
+5)   Pago mediante BIZUM -
+6)   Ingreso mediante transferencia externa +
+7)   Pago mediante transferencia externa -
+8)   Ingreso mediante transferencia entre cuentas +
+9)   Pago mediante transferencia entre cuentas -
+10)  Recibo bancario
+11)  Pago con tarjeta
+12)  Exportar a CSV y salir
+13)  Salir
+""")
 
 df = pd.DataFrame(columns=['Transacción', 'Tipo', 'Balance'])
 
@@ -57,7 +72,9 @@ def salir():
 conteo: int = 0
 
 while True:
-        opcion = float(input("Elige una de las 13 opciones: "))
+
+        print(" ATM ")
+        print("\n")
         print("""
         1)   Balance
         2)   Retirada
@@ -73,6 +90,7 @@ while True:
         12)  Exportar a CSV y salir
         13)  Salir
         """)
+        opcion = float(input("Elige una de las 13 opciones: "))
 
         if opcion == 1:
             conteo = conteo + 1
