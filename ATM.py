@@ -73,6 +73,21 @@ conteo: int = 0
 
 while True:
         opcion = float(input("Elige una de las 13 opciones: "))
+        print("""
+        1)   Balance
+        2)   Retirada
+        3)   Depósito
+        4)   Ingreso mediante BIZUM +
+        5)   Pago mediante BIZUM -
+        6)   Ingreso mediante transferencia externa +
+        7)   Pago mediante transferencia externa -
+        8)   Ingreso mediante transferencia entre cuentas +
+        9)   Pago mediante transferencia entre cuentas -
+        10)  Recibo bancario
+        11)  Pago con tarjeta
+        12)  Exportar a CSV y salir
+        13)  Salir
+        """)
 
         if opcion == 1:
             conteo = conteo + 1
@@ -140,7 +155,8 @@ while True:
             df = df.append({'Transacción': conteo, 'Tipo': ("Pago con tarjeta"), 'Balance':balance_i}, ignore_index=True)
             print(df)
         elif opcion == 12:
-            df.to_csv('ATM.csv',index = False)
+            df.to_csv('ATM.csv',mode = 'a', index = False)
+            exit()
         elif opcion == 13:
             exit()
         else:
